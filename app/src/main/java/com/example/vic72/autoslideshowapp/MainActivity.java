@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -102,11 +103,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (timer != null) {
+                    mResetButton.setText("再生");
                     timer.cancel();
                     mStartButton.setEnabled(true);
                     mPauseButton.setEnabled(true);
                     timer = null;
                 } else {
+                    mResetButton.setText("停止");
 
                     timer = new Timer();
 
@@ -180,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
             case PERMISSIONS_REQUEST_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getContentsInfo();
+                } else {
+                    Toast.makeText(this, "権限の許可をお願いします", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
