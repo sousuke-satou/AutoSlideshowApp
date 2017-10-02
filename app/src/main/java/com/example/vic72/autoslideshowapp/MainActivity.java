@@ -49,25 +49,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(cursor.moveToNext()) {
-                    // indexからIDを取得し、そのIDから画像のURIを取得する
-                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                    Long id = cursor.getLong(fieldIndex);
-                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                if (cursor != null) {
+                    if (cursor.getCount() != 0) {
+                        if (cursor.moveToNext()) {
+                            // indexからIDを取得し、そのIDから画像のURIを取得する
+                            int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                            Long id = cursor.getLong(fieldIndex);
+                            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                    imageVIew.setImageURI(imageUri);
+                            ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                            imageVIew.setImageURI(imageUri);
 
 
-                }else {
-                    cursor.moveToFirst();
-                    // indexからIDを取得し、そのIDから画像のURIを取得する
-                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                    Long id = cursor.getLong(fieldIndex);
-                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                        } else {
+                            cursor.moveToFirst();
+                            // indexからIDを取得し、そのIDから画像のURIを取得する
+                            int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                            Long id = cursor.getLong(fieldIndex);
+                            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                    imageVIew.setImageURI(imageUri);
+                            ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                            imageVIew.setImageURI(imageUri);
+                        }
+                    }
                 }
             }
         });
@@ -76,25 +80,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(cursor.moveToPrevious()) {
-                    // indexからIDを取得し、そのIDから画像のURIを取得する
-                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                    Long id = cursor.getLong(fieldIndex);
-                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                if (cursor != null) {
+                    if (cursor.getCount() != 0) {
 
-                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                    imageVIew.setImageURI(imageUri);
-                } else{
-                    cursor.moveToLast();
-                    // indexからIDを取得し、そのIDから画像のURIを取得する
-                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                    Long id = cursor.getLong(fieldIndex);
-                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                        if (cursor.moveToPrevious()) {
+                            // indexからIDを取得し、そのIDから画像のURIを取得する
+                            int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                            Long id = cursor.getLong(fieldIndex);
+                            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                    imageVIew.setImageURI(imageUri);
+                            ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                            imageVIew.setImageURI(imageUri);
+                        } else {
+                            cursor.moveToLast();
+                            // indexからIDを取得し、そのIDから画像のURIを取得する
+                            int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                            Long id = cursor.getLong(fieldIndex);
+                            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+
+                            ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                            imageVIew.setImageURI(imageUri);
+                        }
+                    }
+
                 }
             }
+
         });
 
         mResetButton.setOnClickListener(new View.OnClickListener() {
@@ -120,32 +131,35 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
 
+                                    if (cursor != null) {
+                                        if (cursor.getCount() != 0) {
+                                            if (cursor.moveToNext()) {
+                                                // indexからIDを取得し、そのIDから画像のURIを取得する
+                                                int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                                                Long id = cursor.getLong(fieldIndex);
+                                                Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-                                    if (cursor.moveToNext()) {
-                                        // indexからIDを取得し、そのIDから画像のURIを取得する
-                                        int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                                        Long id = cursor.getLong(fieldIndex);
-                                        Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
-
-                                        ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                                        imageVIew.setImageURI(imageUri);
+                                                ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                                                imageVIew.setImageURI(imageUri);
 
 
-                                    } else {
-                                        cursor.moveToFirst();
-                                        // indexからIDを取得し、そのIDから画像のURIを取得する
-                                        int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                                        Long id = cursor.getLong(fieldIndex);
-                                        Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                                            } else {
+                                                cursor.moveToFirst();
+                                                // indexからIDを取得し、そのIDから画像のURIを取得する
+                                                int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                                                Long id = cursor.getLong(fieldIndex);
+                                                Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-                                        ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                                        imageVIew.setImageURI(imageUri);
+                                                ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                                                imageVIew.setImageURI(imageUri);
+                                            }
+
+                                            mStartButton.setEnabled(false);
+                                            mPauseButton.setEnabled(false);
+
+
+                                        }
                                     }
-
-                                    mStartButton.setEnabled(false);
-                                    mPauseButton.setEnabled(false);
-
-
                                 }
                             });
 
@@ -184,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getContentsInfo();
                 } else {
+
                     Toast.makeText(this, "権限の許可をお願いします", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -203,27 +218,31 @@ public class MainActivity extends AppCompatActivity {
     private void getContentsInfo() {
 
 
-        // 画像の情報を取得する
-        ContentResolver resolver = getContentResolver();
-         cursor = resolver.query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, // データの種類
-                null, // 項目(null = 全項目)
-                null, // フィルタ条件(null = フィルタなし)
-                null, // フィルタ用パラメータ
-                null // ソート (null ソートなし)
-        );
 
-        if (cursor.moveToFirst()) {
+            // 画像の情報を取得する
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI, // データの種類
+                    null, // 項目(null = 全項目)
+                    null, // フィルタ条件(null = フィルタなし)
+                    null, // フィルタ用パラメータ
+                    null // ソート (null ソートなし)
+            );
 
-                // indexからIDを取得し、そのIDから画像のURIを取得する
-                int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                Long id = cursor.getLong(fieldIndex);
-                Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
 
-                ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                imageVIew.setImageURI(imageUri);
+               if (cursor.moveToFirst()) {
+
+                    // indexからIDを取得し、そのIDから画像のURIを取得する
+                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                    Long id = cursor.getLong(fieldIndex);
+                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+
+
+                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                    imageVIew.setImageURI(imageUri);
+                }
             }
-        }
+            }
 
 
 
@@ -234,7 +253,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+
+
+
 
 
 
